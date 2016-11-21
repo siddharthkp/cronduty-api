@@ -1,0 +1,24 @@
+{
+  "name": "cronduty-api",
+  "version": "0.0.1",
+  "description": "API from cronduty",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddharthkp/cronduty-api.git"
+  },
+  "keywords": [
+    "cronduty",
+    "cron",
+    "monitoring"
+  ],
+  "author": "siddharthkp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siddharthkp/cronduty-api/issues"
+  },
+  "homepage": "https://github.com/siddharthkp/cronduty-api#readme"
+}
