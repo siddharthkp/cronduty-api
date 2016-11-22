@@ -3,9 +3,9 @@ provider:
   name: aws
   runtime: nodejs4.3
 functions:
-  hello:
-    handler: handler.hello
+  register:
+    handler: src/user.register
     events:
       - http:
-          path: hello/read
-          method: get
+          path: user
+          method: post
