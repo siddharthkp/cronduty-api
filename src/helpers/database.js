@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const host = process.env.DATABASE_HOST;
 const user = process.env.DATABASE_USER;
-const password = process.env.DATABASE_PASSWORD;
+const password = process.env.DATABASE_PASSWORD || '';
 const database = 'cronduty';
 
 const knex = require('knex')({
