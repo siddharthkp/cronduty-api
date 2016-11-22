@@ -7,8 +7,8 @@ const password = process.env.DATABASE_PASSWORD;
 const database = 'cronduty';
 
 const knex = require('knex')({
-  client: 'mysql',
-  connection: {host, user, password, database}
+    client: 'mysql',
+    connection: {host, user, password, database}
 });
 
 let get = (resource, params) => {

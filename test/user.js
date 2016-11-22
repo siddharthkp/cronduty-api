@@ -9,7 +9,7 @@ test.cb('register with email', t => {
         body = JSON.parse(body);
 
         t.is(statusCode, 200);
-        t.is(body.email, 'siddharth.kshetrapal@gmail.com');
+        t.is(typeof body.id, 'number');
 
         t.end();
     });
