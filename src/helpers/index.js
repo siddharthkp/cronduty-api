@@ -2,8 +2,10 @@
 
 const request = require('./request');
 const response = require('./response');
+const database = require('./database');
 
 module.exports = {
     request,
-    response
+    response,
+    database
 }
