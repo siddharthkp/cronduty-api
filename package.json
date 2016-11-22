@@ -4,7 +4,9 @@
   "description": "API from cronduty",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "test:serverless": "SLS_DEBUG=true serverless invoke local -f register -p test/event.json",
+    "deploy": "serverless deploy"
   },
   "repository": {
     "type": "git",

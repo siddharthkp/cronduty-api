@@ -1,15 +1,10 @@
 'use strict';
+const {request, response} = require('../helpers');
 
-let register = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
-
-  callback(null, response);
+let register = (event, context, cb) => {
+    let email = request.param(event, 'email');
+    if (!email) response(400, {error: 'Email is a required field'}, cb);
+    else response(200, {email}, cb);
 };
 
 module.exports = register;
