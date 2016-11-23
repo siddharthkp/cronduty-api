@@ -1,9 +1,31 @@
 const test = require('ava');
 const {register} = require('../src/user.js');
 
+test.cb.before(t => {
+    let event = {
+        body: 'email=sid@gmail.com&pagerduty=secretkey'
+    };
+    register(event, null, error => t.end());
+
+});
+
 test.cb('register', t => {
     let event = {
         body: 'email=siddharth.kshetrapal@gmail.com&pagerduty=secretkey'
+    };
+    let response = register(event, null, (error, {statusCode, body}) => {
+        body = JSON.parse(body);
+
+        t.is(statusCode, 201);
+        t.is(typeof body.id, 'number');
+
+        t.end();
+    });
+});
+
+test.cb('re-register', t => {
+    let event = {
+        body: 'email=sid@gmail.com&pagerduty=secretkey'
     };
     let response = register(event, null, (error, {statusCode, body}) => {
         body = JSON.parse(body);

@@ -5,7 +5,7 @@ const config = {
     connection: {
         host: process.env.DATABASE_HOST,
         user: process.env.DATABASE_USER,
-        password: '',
+        password: process.env.DATABASE_PASSWORD || '',
         database: 'cronduty'
     },
     migrations: {
@@ -14,7 +14,7 @@ const config = {
 };
 
 module.exports = {
-  development: config,
-  travis: config,
-  production: config
+    development: config,
+    travis: config,
+    production: config
 };
