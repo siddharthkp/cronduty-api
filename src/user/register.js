@@ -21,7 +21,7 @@ let register = (event, context, cb) => {
 
         getUser(email).then(user => {
             if (user) response(200, {id: user.id}, cb);
-            else createUser(email, pagerduty).then(id => response(200, {id}, cb));
+            else createUser(email, pagerduty).then(id => response(201, {id}, cb));
         });
     }
 };

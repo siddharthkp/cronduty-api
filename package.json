@@ -4,10 +4,12 @@
   "description": "API from cronduty",
   "main": "index.js",
   "scripts": {
-    "test": "ava",
+    "test:setup": "npm run migrations",
+    "test:run": "ava",
+    "test:clean": "npm run migrations:rollback",
+    "test": "run-s test:setup test:run test:clean",
     "test:sls": "SLS_DEBUG=true serverless invoke local -f register -p test/event.json",
     "deploy": "serverless deploy",
-
     "migrations": "knex migrate:latest",
     "migrations:make": "knex migrate:make",
     "migrations:rollback": "knex migrate:rollback"
@@ -28,7 +30,8 @@
   },
   "homepage": "https://github.com/siddharthkp/cronduty-api#readme",
   "devDependencies": {
-    "ava": "^0.17.0"
+    "ava": "^0.17.0",
+    "npm-run-all": "3.1.1"
   },
   "dependencies": {
     "dotenv": "2.0.0",
