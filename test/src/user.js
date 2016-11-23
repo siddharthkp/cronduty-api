@@ -1,5 +1,5 @@
 const test = require('ava');
-const {register} = require('../src/user.js');
+const {register} = require('../../lib/user.js');
 
 test.cb.before(t => {
     let event = {
