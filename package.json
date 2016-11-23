@@ -6,7 +6,8 @@
   "scripts": {
     "test": "ava",
     "test:sls": "SLS_DEBUG=true serverless invoke local -f register -p test/event.json",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "migrations": "knex migrate:latest"
   },
   "repository": {
     "type": "git",
