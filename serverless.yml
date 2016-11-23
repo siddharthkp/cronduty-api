@@ -2,9 +2,11 @@ service: cronduty-test
 provider:
   name: aws
   runtime: nodejs4.3
+  memorySize: 128
+  timout: 2
 functions:
   register:
-    handler: src/user.register
+    handler: lib/user.register
     events:
       - http:
           path: user
