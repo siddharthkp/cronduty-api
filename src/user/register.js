@@ -5,10 +5,12 @@ const {request, response, database} = require('../helpers');
 
 let register = (event, context, cb) => {
     let email = request.param(event, 'email');
+    let pagerduty = request.param(event, 'pagerduty');
 
-    /* Validation on email */
+    /* Validation on email and pagerduty key */
     if (!email) response(400, {error: 'Email is a required field'}, cb);
     else if (!isEmail(email)) response(400, {error: 'This email is not valid'}, cb);
+    else if (!pagerduty) response(400, {error: 'Pagerduty key is a required field'}, cb);
     else {
 
         /*
@@ -19,7 +21,7 @@ let register = (event, context, cb) => {
 
         getUser(email).then(user => {
             if (user) response(200, {id: user.id}, cb);
-            else createUser(email).then(id => response(200, {id}, cb));
+            else createUser(email, pagerduty).then(id => response(200, {id}, cb));
         });
     }
 };
@@ -35,9 +37,9 @@ let getUser = (email) => {
 };
 
 /* Create user */
-let createUser = (email) => {
+let createUser = (email, pagerduty) => {
     return new Promise(resolve => {
-        database.insert('users', {email}).then(rows => {
+        database.insert('users', {email, pagerduty}).then(rows => {
             resolve(rows[0]);
         });
     });
