@@ -4,12 +4,15 @@
   "description": "API from cronduty",
   "main": "index.js",
   "scripts": {
+    "build:src": "babel src -d lib",
+    "build:test": "babel test/src -d test/lib",
+    "build": "run-p build:*",
     "test:setup": "npm run migrations",
-    "test:run": "ava",
+    "test:run": "ava test/lib",
     "test:clean": "npm run migrations:rollback",
-    "test": "run-s test:setup test:run test:clean",
+    "test": "run-s build test:setup test:run test:clean",
     "test:sls": "SLS_DEBUG=true serverless invoke local -f register -p test/event.json",
-    "deploy": "serverless deploy",
+    "deploy": "npm run build && serverless deploy",
     "migrations": "knex migrate:latest",
     "migrations:make": "knex migrate:make",
     "migrations:rollback": "knex migrate:rollback"
@@ -31,6 +34,8 @@
   "homepage": "https://github.com/siddharthkp/cronduty-api#readme",
   "devDependencies": {
     "ava": "^0.17.0",
+    "babel-cli": "6.18.0",
+    "babel-preset-es2015": "6.18.0",
     "npm-run-all": "3.1.1"
   },
   "dependencies": {
@@ -38,5 +43,10 @@
     "email-validator": "1.0.7",
     "knex": "0.12.6",
     "mysql": "2.12.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
