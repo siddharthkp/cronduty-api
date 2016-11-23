@@ -7,7 +7,7 @@
     "test": "ava",
     "test:sls": "SLS_DEBUG=true serverless invoke local -f register -p test/event.json",
     "deploy": "serverless deploy",
-    "migrations": "knex migrate:latest --production"
+    "migrations": "knex migrate:latest --env production"
   },
   "repository": {
     "type": "git",
