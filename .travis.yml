@@ -5,8 +5,9 @@ node_js:
 services:
   - mysql
 env:
-  - DATABASE_HOST=localhost
-  - DATABASE_USER=travis
+  global:
+    - DATABASE_HOST=localhost
+    - DATABASE_USER=travis
 before_script:
   - mysql -e 'create database cronduty;'
   - npm run migrations
