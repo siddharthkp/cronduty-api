@@ -2,9 +2,8 @@ language: node_js
 node_js:
   - "node"
   - "6"
-script:
+before_script:
   - npm run migrations
-  - npm test
 cache:
   directories:
     - node_modules
