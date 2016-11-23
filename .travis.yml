@@ -2,13 +2,16 @@ language: node_js
 node_js:
   - "node"
   - "6"
+services:
+  - mysql
+env:
+  - DATABASE_HOST=localhost
+  - DATABASE_USER=travis
 before_script:
   - mysql -e 'create database cronduty;'
   - npm run migrations
 cache:
   directories:
     - node_modules
-services:
-  - mysql
 notifications:
   email: false

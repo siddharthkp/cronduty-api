@@ -15,6 +15,6 @@ const config = {
 
 module.exports = {
   development: config,
-  staging: config,
+  travis: config,
   production: config
 };
