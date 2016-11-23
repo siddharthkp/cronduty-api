@@ -1,5 +1,4 @@
-//if (process.env.ENVIRONMENT === 'dev') require('dotenv').config();
-require('dotenv').config();
+if (process.env.environment === 'dev') require('dotenv').config();
 
 const host = process.env.DATABASE_HOST;
 const user = process.env.DATABASE_USER;
