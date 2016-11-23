@@ -1,9 +1,9 @@
 const test = require('ava');
 const {register} = require('../src/user.js');
 
-test.cb('register with email', t => {
+test.cb('register', t => {
     let event = {
-        body: 'email=siddharth.kshetrapal@gmail.com'
+        body: 'email=siddharth.kshetrapal@gmail.com&pagerduty=secretkey'
     };
     let response = register(event, null, (error, {statusCode, body}) => {
         body = JSON.parse(body);
@@ -29,7 +29,7 @@ test.cb('register without email', t => {
 
 test.cb('register with invalid email', t => {
     let event = {
-        body: 'email=fake@gmail'
+        body: 'email=invalid@gmail&pagerduty=secretkey'
     };
     let response = register(event, null, (error, {statusCode, body}) => {
         body = JSON.parse(body);
@@ -40,4 +40,20 @@ test.cb('register with invalid email', t => {
         t.end();
     });
 });
+
+test.cb('register without pagerduty key', t => {
+    let event = {
+        body: 'email=siddharth.kshetrapal@gmail.com'
+    };
+
+    let response = register(event, null, (error, {statusCode, body}) => {
+        body = JSON.parse(body);
+
+        t.is(statusCode, 400);
+        t.is(body.error, 'Pagerduty key is a required field');
+
+        t.end();
+    });
+});
+
 
