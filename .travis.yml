@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - "node"
   - "6"
+before_install:
+  - npm run migrations
 cache:
   directories:
     - node_modules
