@@ -1,5 +1,6 @@
 const test = require('ava');
-const {register} = require('../../lib/user.js');
+const {register} = require('../../lib/user');
+const {database} = require('../../lib/helpers');
 
 test.cb.before(t => {
     let event = {
@@ -7,6 +8,10 @@ test.cb.before(t => {
     };
     register(event, null, error => t.end());
 
+});
+
+test.beforeEach(t => {
+    database.connect();
 });
 
 test.cb('register', t => {
