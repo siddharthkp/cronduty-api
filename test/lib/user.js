@@ -4,8 +4,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var test = require('ava');
 
-var _require = require('../../lib/user.js'),
+var _require = require('../../lib/user'),
     register = _require.register;
+
+var _require2 = require('../../lib/helpers'),
+    database = _require2.database;
 
 test.cb.before(function (t) {
     var event = {
@@ -14,6 +17,10 @@ test.cb.before(function (t) {
     register(event, null, function (error) {
         return t.end();
     });
+});
+
+test.beforeEach(function (t) {
+    database.connect();
 });
 
 test.cb('register', function (t) {
