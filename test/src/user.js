@@ -4,7 +4,10 @@ const {database} = require('../../lib/helpers');
 
 test.cb.before(t => {
     let event = {
-        body: 'email=sid@gmail.com&pagerduty=secretkey'
+        body: JSON.stringify({
+            email: 'sid@gmail.com',
+            pagerduty: 'secretkey'
+        })
     };
     register(event, null, error => t.end());
 
@@ -16,7 +19,10 @@ test.beforeEach(t => {
 
 test.cb('register', t => {
     let event = {
-        body: 'email=siddharth.kshetrapal@gmail.com&pagerduty=secretkey'
+         body: JSON.stringify({
+            email: 'sidharth@gmail.com',
+            pagerduty: 'secretkey'
+        })
     };
     let response = register(event, null, (error, {statusCode, body}) => {
         body = JSON.parse(body);
@@ -30,8 +36,12 @@ test.cb('register', t => {
 
 test.cb('re-register', t => {
     let event = {
-        body: 'email=sid@gmail.com&pagerduty=secretkey'
+        body: JSON.stringify({
+            email: 'sid@gmail.com',
+            pagerduty: 'secretkey'
+        })
     };
+
     let response = register(event, null, (error, {statusCode, body}) => {
         body = JSON.parse(body);
 
@@ -43,7 +53,9 @@ test.cb('re-register', t => {
 });
 
 test.cb('register without email', t => {
-    let event = {};
+    let event = {
+        body: JSON.stringify({})
+    };
     let response = register(event, null, (error, {statusCode, body}) => {
         body = JSON.parse(body);
 
@@ -56,7 +68,10 @@ test.cb('register without email', t => {
 
 test.cb('register with invalid email', t => {
     let event = {
-        body: 'email=invalid@gmail&pagerduty=secretkey'
+        body: JSON.stringify({
+            email: 'invalid@gmail',
+            pagerduty: 'secretkey'
+        })
     };
     let response = register(event, null, (error, {statusCode, body}) => {
         body = JSON.parse(body);
@@ -70,7 +85,9 @@ test.cb('register with invalid email', t => {
 
 test.cb('register without pagerduty key', t => {
     let event = {
-        body: 'email=siddharth.kshetrapal@gmail.com'
+        body: JSON.stringify({
+            email: 'sid@gmail.com'
+        })
     };
 
     let response = register(event, null, (error, {statusCode, body}) => {
@@ -82,5 +99,4 @@ test.cb('register without pagerduty key', t => {
         t.end();
     });
 });
-
 
