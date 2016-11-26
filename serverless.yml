@@ -2,8 +2,8 @@ service: cronduty-test
 provider:
   name: aws
   runtime: nodejs4.3
-  memorySize: 128
-  timout: 2
+  memorySize: 256
+  timeout: 2
 functions:
   register:
     handler: lib/user.register

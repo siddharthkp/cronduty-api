@@ -12,7 +12,10 @@ var _require2 = require('../../lib/helpers'),
 
 test.cb.before(function (t) {
     var event = {
-        body: 'email=sid@gmail.com&pagerduty=secretkey'
+        body: JSON.stringify({
+            email: 'sid@gmail.com',
+            pagerduty: 'secretkey'
+        })
     };
     register(event, null, function (error) {
         return t.end();
@@ -25,7 +28,10 @@ test.beforeEach(function (t) {
 
 test.cb('register', function (t) {
     var event = {
-        body: 'email=siddharth.kshetrapal@gmail.com&pagerduty=secretkey'
+        body: JSON.stringify({
+            email: 'sidharth@gmail.com',
+            pagerduty: 'secretkey'
+        })
     };
     var response = register(event, null, function (error, _ref) {
         var statusCode = _ref.statusCode,
@@ -42,8 +48,12 @@ test.cb('register', function (t) {
 
 test.cb('re-register', function (t) {
     var event = {
-        body: 'email=sid@gmail.com&pagerduty=secretkey'
+        body: JSON.stringify({
+            email: 'sid@gmail.com',
+            pagerduty: 'secretkey'
+        })
     };
+
     var response = register(event, null, function (error, _ref2) {
         var statusCode = _ref2.statusCode,
             body = _ref2.body;
@@ -58,7 +68,9 @@ test.cb('re-register', function (t) {
 });
 
 test.cb('register without email', function (t) {
-    var event = {};
+    var event = {
+        body: JSON.stringify({})
+    };
     var response = register(event, null, function (error, _ref3) {
         var statusCode = _ref3.statusCode,
             body = _ref3.body;
@@ -74,7 +86,10 @@ test.cb('register without email', function (t) {
 
 test.cb('register with invalid email', function (t) {
     var event = {
-        body: 'email=invalid@gmail&pagerduty=secretkey'
+        body: JSON.stringify({
+            email: 'invalid@gmail',
+            pagerduty: 'secretkey'
+        })
     };
     var response = register(event, null, function (error, _ref4) {
         var statusCode = _ref4.statusCode,
@@ -91,7 +106,9 @@ test.cb('register with invalid email', function (t) {
 
 test.cb('register without pagerduty key', function (t) {
     var event = {
-        body: 'email=siddharth.kshetrapal@gmail.com'
+        body: JSON.stringify({
+            email: 'sid@gmail.com'
+        })
     };
 
     var response = register(event, null, function (error, _ref5) {
